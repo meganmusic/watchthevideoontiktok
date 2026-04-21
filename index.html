@@ -2,35 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accès TikTok</title>
+    <title>Accès Contenu</title>
     <style>
-        body { background-color: #010101; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-        .btn { background-color: #ff0050; color: white; text-decoration: none; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; margin: 10px; display: block; width: 80%; max-width: 300px; }
-        .btn-alt { background-color: #444; font-size: 1rem; }
-        .instruction { color: #888; font-size: 0.8rem; margin-top: 30px; padding: 0 20px; }
-        .highlight { color: #ff0050; font-weight: bold; }
+        body { background: #000; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: sans-serif; }
+        input[type="submit"] { background: #ff0050; color: white; border: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <a href="intent://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238#Intent;package=com.zhiliaoapp.musically;scheme=https;end;" class="btn">1. OUVRIR DANS TIKTOK</a>
-
-    <a href="https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238" class="btn btn-alt">2. LIEN DE SECOURS (WEB)</a>
-
-    <div class="instruction">
-        ⚠️ <b>SI RIEN NE SE PASSE :</b><br>
-        Cliquez sur les <span class="highlight">•••</span> (en haut à droite)<br>
-        puis sur <span class="highlight">"Ouvrir dans le navigateur"</span>.
-    </div>
+    <form action="https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238" method="get">
+        <input type="submit" value="CONTINUER VERS LA VIDÉO">
+    </form>
 
     <script>
-        // On essaie de forcer l'ouverture dès l'arrivée
-        window.onload = function() {
-            setTimeout(function() {
-                window.location.href = "snssdk1233://aweme/detail/7630919827757993238";
-            }, 500);
-        };
+        // On ne fait PAS de redirection auto ici, on laisse l'utilisateur cliquer
+        // Les formulaires forcent souvent l'ouverture car Instagram ne veut pas casser les sites de vente (e-commerce)
     </script>
 </body>
 </html>
