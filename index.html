@@ -10,7 +10,7 @@
             color: white; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             margin: 0; 
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -18,7 +18,7 @@
             box-sizing: border-box;
         }
 
-        /* Flèche pointant vers le haut à droite */
+        /* Flèche pointant vers les trois points */
         .arrow-container {
             position: absolute;
             top: 15px;
@@ -27,31 +27,37 @@
         }
 
         .arrow {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-top: 6px solid #ff0050;
             border-right: 6px solid #ff0050;
-            transform: rotate(-45deg); /* Pointe vers le haut à droite */
-            animation: bounceVertical 0.8s infinite alternate;
+            transform: rotate(-45deg); 
+            animation: bouncePoint 0.7s infinite alternate;
         }
 
-        @keyframes bounceVertical {
+        @keyframes bouncePoint {
             0% { transform: rotate(-45deg) translate(0, 0); }
-            100% { transform: rotate(-45deg) translate(10px, -10px); }
+            100% { transform: rotate(-45deg) translate(12px, -12px); }
         }
 
         .content {
-            margin-top: 60px;
-            text-align: left; /* Justifié à gauche */
+            margin-top: 50px;
+            text-align: left;
         }
 
-        h2 { color: #ff0050; font-size: 1.4rem; margin-bottom: 10px; }
-        hr { border: 0; border-top: 1px solid #333; margin: 30px 0; }
+        h2 { 
+            color: #ff0050; 
+            font-size: 1.3rem; 
+            margin-bottom: 15px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        hr { border: 0; border-top: 1px solid #333; margin: 35px 0; }
         
-        .instruction { margin-bottom: 25px; }
-        .step { margin: 10px 0; line-height: 1.5; }
+        .step { margin: 12px 0; font-size: 1.1rem; line-height: 1.4; }
         .highlight { color: #ff0050; font-weight: bold; }
-        .dots { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .dots { font-size: 1.6rem; font-weight: bold; vertical-align: middle; }
 
     </style>
 </head>
@@ -63,25 +69,23 @@
 
     <div class="content">
         <div class="instruction">
-            <h2>Version Française</h2>
-            <p class="step">Pour contourner le blocage d'Instagram :</p>
+            <h2>Instagram bloque cette vidéo</h2>
             <p class="step">1. Cliquez sur les <span class="dots">•••</span> en haut à droite.</p>
-            <p class="step">2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>.</p>
+            <p class="step">2. Sélectionnez <span class="highlight">"Ouvrir dans un navigateur externe"</span>.</p>
         </div>
 
         <hr>
 
         <div class="instruction">
-            <h2>English Version</h2>
-            <p class="step">To bypass Instagram's block:</p>
+            <h2>Instagram is blocking this video</h2>
             <p class="step">1. Click on the <span class="dots">•••</span> at the top right.</p>
-            <p class="step">2. Select <span class="highlight">"Open in browser"</span>.</p>
+            <p class="step">2. Select <span class="highlight">"Open in external browser"</span>.</p>
         </div>
     </div>
 
     <script>
-        // Redirection automatique en fond au cas où certains navigateurs l'acceptent
         const tiktokUrl = "https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238";
+        // Tentative de redirection automatique
         window.location.replace(tiktokUrl);
     </script>
 </body>
