@@ -3,61 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ouverture de TikTok...</title>
+    <title>Accès TikTok</title>
     <style>
-        body { background-color: #010101; color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-        .btn { background-color: #ff0050; color: white; text-decoration: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; box-shadow: 0 0 20px rgba(255,0,80,0.5); margin-bottom: 20px; display: inline-block; }
-        .info { color: #888; font-size: 0.9rem; padding: 0 30px; line-height: 1.4; }
+        body { background-color: #010101; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+        .btn { background-color: #ff0050; color: white; text-decoration: none; padding: 20px 30px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; margin: 10px; display: block; width: 80%; max-width: 300px; }
+        .btn-alt { background-color: #444; font-size: 1rem; }
+        .instruction { color: #888; font-size: 0.8rem; margin-top: 30px; padding: 0 20px; }
         .highlight { color: #ff0050; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <a href="snssdk1233://aweme/detail/7630919827757993238" id="fallback-link" class="btn">REGARDER SUR TIKTOK</a>
+    <a href="intent://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238#Intent;package=com.zhiliaoapp.musically;scheme=https;end;" class="btn">1. OUVRIR DANS TIKTOK</a>
 
-    <div class="info">
-        <div id="status">Redirection en cours...</div>
-        <br>
-        Si la page reste blanche :<br>
-        1. Cliquez sur les <span class="highlight">•••</span> en haut à droite<br>
-        2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>
+    <a href="https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238" class="btn btn-alt">2. LIEN DE SECOURS (WEB)</a>
+
+    <div class="instruction">
+        ⚠️ <b>SI RIEN NE SE PASSE :</b><br>
+        Cliquez sur les <span class="highlight">•••</span> (en haut à droite)<br>
+        puis sur <span class="highlight">"Ouvrir dans le navigateur"</span>.
     </div>
 
     <script>
-        const videoId = "7630919827757993238";
-        const webUrl = "https://www.tiktok.com/@megan.music.tiktok/video/" + videoId;
-        
-        // Protocoles spécifiques
-        const iosAppUrl = "snssdk1233://aweme/detail/" + videoId;
-        const androidAppUrl = "intent://www.tiktok.com/@megan.music.tiktok/video/" + videoId + "#Intent;package=com.zhiliaoapp.musically;scheme=https;end;";
-
-        function launch() {
-            const isAndroid = /Android/i.test(navigator.userAgent);
-            const isInstagram = /Instagram/i.test(navigator.userAgent);
-
-            if (isAndroid && isInstagram) {
-                // Force l'ouverture sur Android via le système Intent
-                window.location.href = androidAppUrl;
-            } else {
-                // Tentative standard pour iOS
-                window.location.href = iosAppUrl;
-            }
-
-            // Fallback automatique vers le web si l'app ne s'ouvre pas après 2s
-            setTimeout(() => {
-                window.location.href = webUrl;
-                document.getElementById('status').innerText = "Cliquez sur le bouton rouge si rien ne se passe";
-            }, 2000);
-        }
-
-        // Exécution au chargement
-        window.onload = launch;
-
-        // Mise à jour du bouton pour le clic manuel
-        const btn = document.getElementById('fallback-link');
-        btn.onclick = function(e) {
-            launch();
-            return false;
+        // On essaie de forcer l'ouverture dès l'arrivée
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = "snssdk1233://aweme/detail/7630919827757993238";
+            }, 500);
         };
     </script>
 </body>
