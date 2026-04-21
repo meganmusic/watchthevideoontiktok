@@ -2,21 +2,41 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accès Contenu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Accès Vidéo</title>
     <style>
-        body { background: #000; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: sans-serif; }
-        input[type="submit"] { background: #ff0050; color: white; border: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; cursor: pointer; }
+        body { background-color: #010101; color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; overflow: hidden; }
+        
+        /* La Flèche Animée */
+        .arrow-container { position: absolute; top: 10px; right: 20px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; }
+        .arrow { width: 50px; height: 50px; border-top: 8px solid #ff0050; border-right: 8px solid #ff0050; transform: rotate(135deg); animation: blink 1s infinite alternate; }
+        
+        @keyframes blink { 0% { opacity: 0.2; transform: rotate(135deg) translate(-10px, -10px); } 100% { opacity: 1; transform: rotate(135deg) translate(5px, 5px); } }
+
+        /* Le Texte Pédagogique */
+        .instruction-box { padding: 0 30px; margin-top: 60px; }
+        .dots { color: #ff0050; font-weight: bold; font-size: 1.8rem; letter-spacing: 2px; }
+        .highlight { color: #ff0050; font-weight: bold; }
+        p { font-size: 1.1rem; line-height: 1.6; margin: 15px 0; }
+        
+        /* Pour le test sur bureau, on met un lien cliquable quand même */
+        .btn-desktop { display: none; margin-top: 30px; background: #333; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; font-size: 0.9rem; }
+        @media (min-width: 600px) { .btn-desktop { display: inline-block; } }
     </style>
 </head>
 <body>
 
-    <form action="https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238" method="get">
-        <input type="submit" value="CONTINUER VERS LA VIDÉO">
-    </form>
+    <div class="arrow-container">
+        <div class="arrow"></div>
+    </div>
 
-    <script>
-        // On ne fait PAS de redirection auto ici, on laisse l'utilisateur cliquer
-        // Les formulaires forcent souvent l'ouverture car Instagram ne veut pas casser les sites de vente (e-commerce)
-    </script>
-</body>
-</html>
+    <div class="instruction-box">
+        <p>Instagram bloque la vidéo.</p>
+        
+        <p>1. Cliquez sur les <span class="dots">•••</span> <br>(en haut à droite)</p>
+        
+        <p>2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>.</p>
+        
+        <p>La vidéo TikTok s'ouvrira alors instantanément.</p>
+        
+        <a href="
