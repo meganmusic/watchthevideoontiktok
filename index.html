@@ -3,63 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ouverture de TikTok...</title>
+    <title>Redirection TikTok...</title>
     <style>
-        body { 
-            background-color: #010101; 
-            color: white; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
-            text-align: center;
-        }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #ff0050;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        .btn { 
-            background-color: #ff0050; 
-            color: white; 
-            text-decoration: none; 
-            padding: 18px 35px; 
-            border-radius: 12px; 
-            font-weight: bold; 
-            font-size: 1.2rem; 
-            box-shadow: 0 4px 15px rgba(255,0,80,0.3);
-            transition: transform 0.2s;
-        }
-        .btn:active { transform: scale(0.95); }
-        p { color: #888; font-size: 0.9rem; margin-top: 25px; padding: 0 20px; }
+        body { background-color: #010101; color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+        .btn { background-color: #ff0050; color: white; text-decoration: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; box-shadow: 0 0 20px rgba(255,0,80,0.5); margin-bottom: 20px; display: inline-block; }
+        .info { color: #888; font-size: 0.9rem; padding: 0 30px; line-height: 1.4; }
+        .dots { color: #ff0050; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="loader"></div>
-    <a href="https://vm.tiktok.com/ZNRqsMtn6/" class="btn" id="tiktok-link">WATCH THE VIDEO ON TIKTOK</a>
-    
-    <p>Si la vidéo ne s'ouvre pas automatiquement,<br>cliquez sur le bouton ci-dessus.</p>
+    <a href="https://www.tiktok.com/@megan.music.tiktok/video/7358172346743934241" id="open-link" class="btn">OUVRIR DANS TIKTOK</a>
+
+    <div class="info">
+        L'application devrait s'ouvrir...<br><br>
+        Si rien ne se passe, cliquez sur les <span class="dots">•••</span> en haut à droite et sélectionnez <span class="dots">"Ouvrir dans le navigateur"</span>.
+    </div>
 
     <script>
-        const destination = "https://vm.tiktok.com/ZNRqsMtn6/";
-        
-        // 1. Tentative de redirection immédiate
-        window.location.replace(destination);
+        // L'URL de ta vidéo (utilise l'ID long de la vidéo si possible, sinon ton lien court)
+        const webUrl = "https://vm.tiktok.com/ZNRqsMtn6/";
+        // Le lien "Deep" qui force l'app sur iOS/Android
+        const appUrl = "snssdk1233://aweme/detail/7358172346743934241"; 
 
-        // 2. Deuxième tentative après 500ms au cas où
-        setTimeout(function() {
-            window.location.href = destination;
-        }, 500);
+        function tryOpen() {
+            // Tentative 1 : Forcer l'App directement
+            window.location.href = appUrl;
+            
+            // Tentative 2 : Secours Web après 500ms
+            setTimeout(function() {
+                window.location.href = webUrl;
+            }, 500);
+        }
+
+        // Exécution automatique
+        tryOpen();
+
+        // Mise à jour du bouton manuel
+        document.getElementById('open-link').onclick = function(e) {
+            tryOpen();
+            return false;
+        };
     </script>
 </body>
 </html>
