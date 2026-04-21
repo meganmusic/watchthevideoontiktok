@@ -3,25 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Accès Vidéo</title>
+    <title>Watch on TikTok</title>
     <style>
-        body { background-color: #010101; color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; overflow: hidden; }
-        
-        /* La Flèche Animée */
-        .arrow-container { position: absolute; top: 10px; right: 20px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; }
-        .arrow { width: 50px; height: 50px; border-top: 8px solid #ff0050; border-right: 8px solid #ff0050; transform: rotate(135deg); animation: blink 1s infinite alternate; }
-        
-        @keyframes blink { 0% { opacity: 0.2; transform: rotate(135deg) translate(-10px, -10px); } 100% { opacity: 1; transform: rotate(135deg) translate(5px, 5px); } }
+        body { 
+            background-color: #010101; 
+            color: white; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100vh;
+            box-sizing: border-box;
+        }
 
-        /* Le Texte Pédagogique */
-        .instruction-box { padding: 0 30px; margin-top: 60px; }
-        .dots { color: #ff0050; font-weight: bold; font-size: 1.8rem; letter-spacing: 2px; }
-        .highlight { color: #ff0050; font-weight: bold; }
-        p { font-size: 1.1rem; line-height: 1.6; margin: 15px 0; }
+        /* Flèche pointant vers le haut à droite */
+        .arrow-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+        }
+
+        .arrow {
+            width: 40px;
+            height: 40px;
+            border-top: 6px solid #ff0050;
+            border-right: 6px solid #ff0050;
+            transform: rotate(-45deg); /* Pointe vers le haut à droite */
+            animation: bounceVertical 0.8s infinite alternate;
+        }
+
+        @keyframes bounceVertical {
+            0% { transform: rotate(-45deg) translate(0, 0); }
+            100% { transform: rotate(-45deg) translate(10px, -10px); }
+        }
+
+        .content {
+            margin-top: 60px;
+            text-align: left; /* Justifié à gauche */
+        }
+
+        h2 { color: #ff0050; font-size: 1.4rem; margin-bottom: 10px; }
+        hr { border: 0; border-top: 1px solid #333; margin: 30px 0; }
         
-        /* Pour le test sur bureau, on met un lien cliquable quand même */
-        .btn-desktop { display: none; margin-top: 30px; background: #333; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; font-size: 0.9rem; }
-        @media (min-width: 600px) { .btn-desktop { display: inline-block; } }
+        .instruction { margin-bottom: 25px; }
+        .step { margin: 10px 0; line-height: 1.5; }
+        .highlight { color: #ff0050; font-weight: bold; }
+        .dots { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+
     </style>
 </head>
 <body>
@@ -30,25 +61,28 @@
         <div class="arrow"></div>
     </div>
 
-    <div class="instruction-box">
-        <p>Instagram bloque la vidéo.</p>
-        
-        <p>1. Cliquez sur les <span class="dots">•••</span> <br>(en haut à droite)</p>
-        
-        <p>2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>.</p>
-        
-        <p>La vidéo TikTok s'ouvrira alors instantanément.</p>
-        
-        <a href="https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238" class="btn-desktop">Lien direct (Desktop uniquement)</a>
+    <div class="content">
+        <div class="instruction">
+            <h2>Version Française</h2>
+            <p class="step">Pour contourner le blocage d'Instagram :</p>
+            <p class="step">1. Cliquez sur les <span class="dots">•••</span> en haut à droite.</p>
+            <p class="step">2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>.</p>
+        </div>
+
+        <hr>
+
+        <div class="instruction">
+            <h2>English Version</h2>
+            <p class="step">To bypass Instagram's block:</p>
+            <p class="step">1. Click on the <span class="dots">•••</span> at the top right.</p>
+            <p class="step">2. Select <span class="highlight">"Open in browser"</span>.</p>
+        </div>
     </div>
 
     <script>
-        // Le lien final vers ta vidéo
-        const videoUrl = "https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238";
-        
-        // Tentative de redirection automatique "propre" (car certains navigateurs l'autorisent si l'action est rapide)
-        // Mais l'instruction visuelle reste la clé.
-        window.location.replace(videoUrl);
+        // Redirection automatique en fond au cas où certains navigateurs l'acceptent
+        const tiktokUrl = "https://www.tiktok.com/@megan.music.tiktok/video/7630919827757993238";
+        window.location.replace(tiktokUrl);
     </script>
 </body>
 </html>
