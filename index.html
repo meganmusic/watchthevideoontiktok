@@ -3,45 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirection TikTok...</title>
+    <title>Ouverture de TikTok...</title>
     <style>
         body { background-color: #010101; color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
         .btn { background-color: #ff0050; color: white; text-decoration: none; padding: 20px 40px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; box-shadow: 0 0 20px rgba(255,0,80,0.5); margin-bottom: 20px; display: inline-block; }
         .info { color: #888; font-size: 0.9rem; padding: 0 30px; line-height: 1.4; }
-        .dots { color: #ff0050; font-weight: bold; }
+        .highlight { color: #ff0050; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <a href="https://www.tiktok.com/@megan.music.tiktok/video/7358172346743934241" id="open-link" class="btn">OUVRIR DANS TIKTOK</a>
+    <a href="snssdk1233://aweme/detail/7630919827757993238" id="fallback-link" class="btn">REGARDER SUR TIKTOK</a>
 
     <div class="info">
-        L'application devrait s'ouvrir...<br><br>
-        Si rien ne se passe, cliquez sur les <span class="dots">•••</span> en haut à droite et sélectionnez <span class="dots">"Ouvrir dans le navigateur"</span>.
+        <div id="status">Redirection en cours...</div>
+        <br>
+        Si la page reste blanche :<br>
+        1. Cliquez sur les <span class="highlight">•••</span> en haut à droite<br>
+        2. Sélectionnez <span class="highlight">"Ouvrir dans le navigateur"</span>
     </div>
 
     <script>
-        // L'URL de ta vidéo (utilise l'ID long de la vidéo si possible, sinon ton lien court)
-        const webUrl = "https://vm.tiktok.com/ZNRqsMtn6/";
-        // Le lien "Deep" qui force l'app sur iOS/Android
-        const appUrl = "snssdk1233://aweme/detail/7358172346743934241"; 
+        const videoId = "7630919827757993238";
+        const webUrl = "https://www.tiktok.com/@megan.music.tiktok/video/" + videoId;
+        
+        // Protocoles spécifiques
+        const iosAppUrl = "snssdk1233://aweme/detail/" + videoId;
+        const androidAppUrl = "intent://www.tiktok.com/@megan.music.tiktok/video/" + videoId + "#Intent;package=com.zhiliaoapp.musically;scheme=https;end;";
 
-        function tryOpen() {
-            // Tentative 1 : Forcer l'App directement
-            window.location.href = appUrl;
-            
-            // Tentative 2 : Secours Web après 500ms
-            setTimeout(function() {
+        function launch() {
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isInstagram = /Instagram/i.test(navigator.userAgent);
+
+            if (isAndroid && isInstagram) {
+                // Force l'ouverture sur Android via le système Intent
+                window.location.href = androidAppUrl;
+            } else {
+                // Tentative standard pour iOS
+                window.location.href = iosAppUrl;
+            }
+
+            // Fallback automatique vers le web si l'app ne s'ouvre pas après 2s
+            setTimeout(() => {
                 window.location.href = webUrl;
-            }, 500);
+                document.getElementById('status').innerText = "Cliquez sur le bouton rouge si rien ne se passe";
+            }, 2000);
         }
 
-        // Exécution automatique
-        tryOpen();
+        // Exécution au chargement
+        window.onload = launch;
 
-        // Mise à jour du bouton manuel
-        document.getElementById('open-link').onclick = function(e) {
-            tryOpen();
+        // Mise à jour du bouton pour le clic manuel
+        const btn = document.getElementById('fallback-link');
+        btn.onclick = function(e) {
+            launch();
             return false;
         };
     </script>
